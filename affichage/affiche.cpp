@@ -121,3 +121,6 @@ void shiftAfficheur(int adress, int valeur){
   envoyerCommande(adress,0x06);     // 0    0    0    0    0    1    1    0 :entry mode set=> I/D=1(incremente), S=0(cursor move)
   envoyerCommande(adress,0x0c);     // 0    0    0    0    1    1    1    1 :DisplayCtrl=>D=1(lcd active),C=0 (cursor oon), B=0 (blink on)
 }
+
+
+

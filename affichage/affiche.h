@@ -13,11 +13,11 @@
 #define MESSAGE4 "  Bienvenu      "
 #define MESSAGE5 "   Au revoir    "
 #define MESSAGE6 " et a bientot   "
-#define MESSAGE7 "carte non valide"
+#define MESSAGE7 "Carte non valide"
 #define MESSAGE8 "Quittez la place"
-#define MESSAGE9 "code non valide "
+#define MESSAGE9 "Code non valide "
 #define MESSAGE10 "Quittez la place"
-
+#define VALIDATION 1
 
 
 void initAfficheur(int adress);
@@ -32,5 +32,6 @@ void envoyerDonnee(int adress,int valeur);
 void envoyerMessage(int adress,const char* maChaine,int ligne);
 void blinkAfficheur(int adress,int nombre,unsigned long duree);
 void shiftAfficheur(int adress, int valeur);
+
 
 #endif
