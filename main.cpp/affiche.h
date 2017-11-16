@@ -8,15 +8,16 @@
 #define LIGNE2 0x40
 
 #define MESSAGE1 "    Bonjour     "
-#define MESSAGE2 "Entrez code SVP "
-#define MESSAGE3 " Code correct   "
-#define MESSAGE4 "  Bienvenu      "
-#define MESSAGE5 "   Au revoir    "
-#define MESSAGE6 " et a bientot   "
+#define MESSAGE21 "Inserez carte ou"
+#define MESSAGE22 "entrez code SVP "
+#define MESSAGE3 "  Code correct  "
+#define MESSAGE4 "    Bienvenu    "
+#define MESSAGE5 " Code incorrect "
+#define MESSAGE6 " Reessayez SVP  "
 #define MESSAGE7 "Carte non valide"
 #define MESSAGE8 "Quittez la place"
 #define MESSAGE9 "Code non valide "
-#define MESSAGE10 "Quittez la place"
+#define MESSAGE10 " Trop lent XD  "
 #define VALIDATION 1
 
 
