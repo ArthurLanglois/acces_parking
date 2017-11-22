@@ -9,5 +9,6 @@ void ouvrirBarriere(void);
 void fermerBarriere(void);
 int boucleAmont(void);
 int boucleAval(void);
+int validation(void);
 
 #endif

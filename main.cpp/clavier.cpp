@@ -73,18 +73,6 @@ char tradClavier(int valeur){
   return touche;
 }
 
-int validation(void){
-  int valid = 0;
-  if(testClavier(0x22)==true){
-    if(validationClavier()==1){
-      valid = 1;
-      effacerAfficheur (0x3b);
-      envoyerMessage(0x3b,MESSAGE3,LIGNE1);
-      envoyerMessage(0x3b,MESSAGE4,LIGNE2);
-    }
-  }
-  return valid;
-}
 
 
 int validationClavier(void){

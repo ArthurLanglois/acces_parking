@@ -11,6 +11,7 @@
 #define MESSAGE21 "Inserez carte ou"
 #define MESSAGE22 "entrez code SVP "
 #define MESSAGE3 "  Code correct  "
+#define MESSAGE11 " Carte correcte "
 #define MESSAGE4 "    Bienvenu    "
 #define MESSAGE5 " Code incorrect "
 #define MESSAGE6 " Reessayez SVP  "

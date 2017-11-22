@@ -1,4 +1,6 @@
 #include "Arduino.h"
+#include "clavier.h"
+#include "cartepuce.h"
 #include "fonction.h" 
 #include "affiche.h"
 #include <string.h>
@@ -17,6 +19,7 @@ int lireDonnee(int adress){
   while(Wire.available()){
     octet = Wire.read();
   }
+  Wire.endTransmission();
   return octet;
 }
 
@@ -44,5 +47,26 @@ int boucleAval(void){
   else{
     return 1;
   }
+}
+
+int validation(void){
+  int valid = 0;
+  if(testClavier(0x22)==true){
+    if(validationClavier()==1){
+      valid = 1;
+      effacerAfficheur (0x3b);
+      envoyerMessage(0x3b,MESSAGE3,LIGNE1);
+      envoyerMessage(0x3b,MESSAGE4,LIGNE2);
+    }
+  }
+  if(carteDetectee()==true){
+    if(validationCarte()==1){
+      valid = 1;
+      effacerAfficheur (0x3b);
+      envoyerMessage(0x3b,MESSAGE11,LIGNE1);
+      envoyerMessage(0x3b,MESSAGE4,LIGNE2);
+    }
+  }
+  return valid;
 }
 
