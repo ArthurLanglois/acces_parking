@@ -4,6 +4,7 @@
 #include "fonction.h"
 #include "clavier.h"
 #include "cartepuce.h"
+#include <Wire.h>
 
 void setup() {
   initI2C(255);           //Vitesse de transmission
@@ -16,9 +17,6 @@ void setup() {
 void loop() {
 
 
-Serial.println(validationCarte());
-
-/*
   static int drapeauTexte = 0;
   int tempo=0, testTempo;       //tempo permettra d'attendre les 30 secondes en entrée
   static int nombreVoiture=0;   //static qui permet de compter le nombre de véhicules dans le parking
@@ -76,6 +74,6 @@ Serial.println(validationCarte());
               nombreVoiture--;
             }
     } //Fin de sortie d'un véhicule
-*/
+
 }
 

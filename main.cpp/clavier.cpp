@@ -6,9 +6,9 @@
 #include <Wire.h>
 
 
-boolean testClavier(int adresse){
+boolean testClavier(int adresse){       //Fonction permettant de detecter s iune touche est appuyee
   boolean test = false;
-  ecrireDonnee(adresse, 0x0f);
+  ecrireDonnee(adresse, 0x0f);          //
   delay(20);
   if(lireDonnee(adresse)!=(0x0f)){
     test = true;
