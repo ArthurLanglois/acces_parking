@@ -16,7 +16,27 @@ void setup() {
 
 void loop() {
 
+if (testClavier(0x22)==true){
+Wire.beginTransmission(0x57);
+  Wire.write(0x10);
+  Wire.write(1);
+  Wire.write(2);
+  Wire.write(3);
+  Wire.write(4);
+  Wire.endTransmission();
 
+  Wire.beginTransmission(0x57);
+  Wire.write(0x10);
+  Wire.requestFrom(0x57, 5, true);
+  Wire.read();
+  Serial.println(Wire.read());
+  Serial.println(Wire.read());
+  Serial.println(Wire.read());
+  Serial.println(Wire.read());
+  Wire.endTransmission();
+}
+
+/*
   static int drapeauTexte = 0;
   int tempo=0, testTempo;       //tempo permettra d'attendre les 30 secondes en entrée
   static int nombreVoiture=0;   //static qui permet de compter le nombre de véhicules dans le parking
@@ -74,6 +94,6 @@ void loop() {
               nombreVoiture--;
             }
     } //Fin de sortie d'un véhicule
-
+*/
 }
 
