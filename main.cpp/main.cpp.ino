@@ -4,39 +4,56 @@
 #include "fonction.h"
 #include "clavier.h"
 #include "cartepuce.h"
+#include "terminal.h"
 #include <Wire.h>
 
 void setup() {
   initI2C(255);           //Vitesse de transmission
   fermerBarriere();       //fermer d'office la barrière
-  Serial.begin(9600);
+  Serial3.begin(9600);
   initAfficheur(0x3b);
   setEclairage(0x21,LOW);
+  
+  terminalInit();
+  terminalPosition(3,6);
+  Serial3.print("----");
+  terminalPosition(4,4);
+  Serial3.print("/      \\");
+  terminalPosition(5,3);
+  Serial3.print("|        |");
+  terminalPosition(6,4);
+  Serial3.print("\\      /");
+  terminalPosition(7,6);
+  Serial3.print("----");
+  terminalPosition(3,30);
+  Serial3.print("0    Vehicule(s) dans le parking");
+  terminalPosition(5,30);
+  Serial3.print("--> ------ d'un véhicule");
+  terminalPosition(7,30);
+  Serial3.print("La barrière est FERMEE ");
 }
 
 void loop() {
 
-if (testClavier(0x22)==true){
-Wire.beginTransmission(0x57);
-  Wire.write(0x10);
-  Wire.write(1);
-  Wire.write(2);
-  Wire.write(3);
-  Wire.write(4);
-  Wire.endTransmission();
+/* 
+ terminalPosition(4,5);
+ terminalCouleur (37,41);
+ Serial3.print("      ");
+ terminalPosition(5,4);
+ Serial3.print("        ");
+ terminalPosition(6,5);
+ Serial3.print("      ");
+ delay(500);
+ terminalPosition(4,5);
+ terminalCouleur (37,40);
+ Serial3.print("      ");
+ terminalPosition(5,4);
+ Serial3.print("        ");
+ terminalPosition(6,5);
+ Serial3.print("      ");
+ delay(500);
+*/
 
-  Wire.beginTransmission(0x57);
-  Wire.write(0x10);
-  Wire.requestFrom(0x57, 5, true);
-  Wire.read();
-  Serial.println(Wire.read());
-  Serial.println(Wire.read());
-  Serial.println(Wire.read());
-  Serial.println(Wire.read());
-  Wire.endTransmission();
-}
-
-/*
   static int drapeauTexte = 0;
   int tempo=0, testTempo;       //tempo permettra d'attendre les 30 secondes en entrée
   static int nombreVoiture=0;   //static qui permet de compter le nombre de véhicules dans le parking
@@ -48,7 +65,7 @@ Wire.beginTransmission(0x57);
         setEclairage(0x21,HIGH);
         if (drapeauTexte == 0){
           envoyerMessage(0x3b,MESSAGE1,LIGNE1);
-          delay(2000);
+          delay(1500);
           drapeauTexte = 1;
           effacerAfficheur (0x3b);
           envoyerMessage(0x3b,MESSAGE21,LIGNE1);
@@ -56,6 +73,8 @@ Wire.beginTransmission(0x57);
         }
         if(validation()==1){ //Code valide
         ouvrirBarriere();
+        terminalPosition(7,46);
+        Serial3.print("OUVERTE");
         while(boucleAmont()==1 && boucleAval()==0 && testTempo==1){ //Procédure de fermeture de la barrière si la voiture reste
               tempo++;                                                                        //Plus de 30 secondes sur la boucle amont
               delay(30);
@@ -70,12 +89,16 @@ Wire.beginTransmission(0x57);
         if(boucleAmont()==0 || boucleAval()==1){
             if (boucleAval()==1 || boucleAmont()==1){  //Si la voiture avance
                 while(boucleAval()==1 || boucleAmont()==1);  //On attend que la voiture ait passée la barrière
-                  nombreVoiture++;
             }
         }
-        fermerBarriere();   //Et on incrémente le nombre de voitures dans le parking
-        }
+        fermerBarriere();
+        terminalPosition(7,46);
+        Serial3.print("FERMEE ");
         
+        }
+        nombreVoiture++;  //Et on incrémente le nombre de voitures dans le parking
+        terminalPosition(3,30);
+        Serial3.print(nombreVoiture);
   }
   else{
     drapeauTexte = 0;
@@ -87,13 +110,19 @@ Wire.beginTransmission(0x57);
     //Gestion de la sortie d'un véhicule on ne décremente que si la voiture traverse les 2 boucles
     if(boucleAval()==1 && boucleAmont()==0){
             ouvrirBarriere();
+            terminalPosition(7,46);
+            Serial3.print("OUVERTE");
             while(boucleAval()==1 && boucleAmont()==0);
             if(boucleAval()==1 || boucleAmont()==1){
               while(boucleAval()==1 || boucleAmont()==1);
               fermerBarriere();
+              terminalPosition(7,46);
+              Serial3.print("FERMEE ");
               nombreVoiture--;
+              terminalPosition(3,30);
+              Serial3.print(nombreVoiture);
             }
     } //Fin de sortie d'un véhicule
-*/
+
 }
 

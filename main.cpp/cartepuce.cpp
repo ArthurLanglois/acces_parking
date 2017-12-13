@@ -26,7 +26,7 @@ int validationCarte(void){    //Fonction qui permet de verifier si la carte rent
     Wire.read();
     while(Wire.available()){
       codeCarte[rang]=(char)Wire.read();
-      //Serial.println(codeCarte[rang]);
+      //Serial3.println(codeCarte[rang]);
       rang++;
     }
     Wire.endTransmission();

@@ -29,46 +29,46 @@ int toucheAppuyee(int adresse){         //Fonction permettant de recuperer la va
 char tradClavier(int valeur){           //Fonction permettant de traduire la touche appuyee
   int touche;                           //en fonction de la valeur donnee puis en affectant un caractere
   switch(valeur){
-    case 238 :  Serial.println("1");
+    case 238 :  Serial3.println("1");
                 touche = '1';
                 break;
-    case 237 :  Serial.println("4");
+    case 237 :  Serial3.println("4");
                 touche = '4';
                 break;
-    case 235 :  Serial.println("7");
+    case 235 :  Serial3.println("7");
                 touche = '7';
                 break;
-    case 222 :  Serial.println("2");
+    case 222 :  Serial3.println("2");
                 touche = '2';
                 break;
-    case 221 :  Serial.println("5");
+    case 221 :  Serial3.println("5");
                 touche = '5';
                 break;
-    case 219 :  Serial.println("8");
+    case 219 :  Serial3.println("8");
                 touche = '8';
                 break;
-    case 190 :  Serial.println("3");
+    case 190 :  Serial3.println("3");
                 touche = '3';
                 break;
-    case 189 :  Serial.println("6");
+    case 189 :  Serial3.println("6");
                 touche = '6';
                 break;
-    case 187 :  Serial.println("9");
+    case 187 :  Serial3.println("9");
                 touche = '9';
                 break;
-    case 123 :  Serial.println("@");
+    case 123 :  Serial3.println("@");
                 touche = 'A';
                 break;
-    case 183 :  Serial.println("#");
+    case 183 :  Serial3.println("#");
                 touche = '#';
                 break;
-    case 215 :  Serial.println("0");
+    case 215 :  Serial3.println("0");
                 touche = '0';
                 break;
-    case 231 :  Serial.println("*");
+    case 231 :  Serial3.println("*");
                 touche = '*';
                 break;
-    default : Serial.println("essaie encore");
+    default : Serial3.println("essaie encore");
   }
   return touche;
 }
