@@ -6,11 +6,11 @@
 #include <Wire.h>
 
 
-boolean testClavier(int adresse){       //Fonction permettant de detecter si une touche est appuyee
+boolean testClavier(){       //Fonction permettant de detecter si une touche est appuyee
   boolean test = false;
-  ecrireDonnee(adresse, 0x0f);          //On ecrit ca pour detecter si une touche a ete appuyee
+  ecrireDonnee(CLAVIER, 0x0f);          //On ecrit ca pour detecter si une touche a ete appuyee
   delay(20);
-  if(lireDonnee(adresse)!=(0x0f)){      //Si la touche appuyee qui est detectee, alors la touche appuyee est differente
+  if(lireDonnee(CLAVIER)!=(0x0f)){      //Si la touche appuyee qui est detectee, alors la touche appuyee est differente
     test = true;
   }
   return test;
@@ -29,46 +29,45 @@ int toucheAppuyee(int adresse){         //Fonction permettant de recuperer la va
 char tradClavier(int valeur){           //Fonction permettant de traduire la touche appuyee
   int touche;                           //en fonction de la valeur donnee puis en affectant un caractere
   switch(valeur){
-    case 238 :  Serial3.println("1");
+    case 238 :  //Serial3.println("1");
                 touche = '1';
                 break;
-    case 237 :  Serial3.println("4");
+    case 237 :  //Serial3.println("4");
                 touche = '4';
                 break;
-    case 235 :  Serial3.println("7");
+    case 235 :  //Serial3.println("7");
                 touche = '7';
                 break;
-    case 222 :  Serial3.println("2");
+    case 222 :  //Serial3.println("2");
                 touche = '2';
                 break;
-    case 221 :  Serial3.println("5");
+    case 221 :  //Serial3.println("5");
                 touche = '5';
                 break;
-    case 219 :  Serial3.println("8");
+    case 219 :  //Serial3.println("8");
                 touche = '8';
                 break;
-    case 190 :  Serial3.println("3");
+    case 190 :  //Serial3.println("3");
                 touche = '3';
                 break;
-    case 189 :  Serial3.println("6");
+    case 189 :  //Serial3.println("6");
                 touche = '6';
                 break;
-    case 187 :  Serial3.println("9");
+    case 187 :  //Serial3.println("9");
                 touche = '9';
                 break;
-    case 123 :  Serial3.println("@");
+    case 123 :  //Serial3.println("@");
                 touche = 'A';
                 break;
-    case 183 :  Serial3.println("#");
+    case 183 :  //Serial3.println("#");
                 touche = '#';
                 break;
-    case 215 :  Serial3.println("0");
+    case 215 :  //Serial3.println("0");
                 touche = '0';
                 break;
-    case 231 :  Serial3.println("*");
+    case 231 :  //Serial3.println("*");
                 touche = '*';
                 break;
-    default : Serial3.println("essaie encore");
   }
   return touche;
 }
@@ -80,13 +79,13 @@ int validationClavier(void){            //Fonction qui permet de verifier si le 
   char codeValide[5]={'1','2','3','4','\0'};
   char codeEntree[5]={' ',' ',' ',' ','\0'};
   int rang;
-  if(testClavier(0x22)==true){        //Si une touche est appuyee
+  if(testClavier()==true){        //Si une touche est appuyee
     int essais = 0;
     do{
         for(rang=0;rang<4;rang++){
-            while (testClavier(0x22)==false);   //On ne fait rien tant qu'aucune touche n'est appuyee
-            codeEntree[rang]=tradClavier(toucheAppuyee(0x22));  //On traduit la valeur de la touche appuyee
-            while (testClavier(0x22)==true);    //On ne fait rien tant qu'une touchee est appuyee
+            while (testClavier()==false);   //On ne fait rien tant qu'aucune touche n'est appuyee
+            codeEntree[rang]=tradClavier(toucheAppuyee(CLAVIER));  //On traduit la valeur de la touche appuyee
+            while (testClavier()==true);    //On ne fait rien tant qu'une touchee est appuyee
         }
         essais++;
         if(strcmp(codeEntree,codeValide)!=0 && essais<3){ //On compare le code entre avec le code valide

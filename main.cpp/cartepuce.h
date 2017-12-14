@@ -3,8 +3,9 @@
 
 #include "Arduino.h"
 
-boolean carteDetectee(void);
+#define CARTEAPUCE 0x50
 
+boolean carteDetectee(void);
 int validationCarte(void);
 
 

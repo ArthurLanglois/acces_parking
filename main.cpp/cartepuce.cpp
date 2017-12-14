@@ -21,8 +21,8 @@ int validationCarte(void){    //Fonction qui permet de verifier si la carte rent
   char codeCarte[5]={' ',' ',' ',' ','\0'};
   if(carteDetectee()==true){  //Si une carte est detectee, alors
     ecrireDonnee(0x21,0x06);
-    Wire.beginTransmission(0x50);
-    Wire.requestFrom(0x50, 5, true);
+    Wire.beginTransmission(CARTEAPUCE);
+    Wire.requestFrom(CARTEAPUCE, 5, true);
     Wire.read();
     while(Wire.available()){
       codeCarte[rang]=(char)Wire.read();
@@ -33,6 +33,12 @@ int validationCarte(void){    //Fonction qui permet de verifier si la carte rent
     ecrireDonnee(0x21,0x04);
     if(strcmp(codeCarte,codeValide)==0){
       resultat = 1;
+    }
+    else{                                                 //Si la carte est invalide, on lui demande de quitter la place
+      effacerAfficheur (0x3b);
+      envoyerMessage(0x3b,MESSAGE7,LIGNE1);
+      envoyerMessage(0x3b,MESSAGE8,LIGNE2);
+      while(boucleAmont()==1);
     }
   }
   return resultat;

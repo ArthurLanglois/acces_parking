@@ -3,8 +3,9 @@
 
 #include "Arduino.h"
 
+#define CLAVIER 0x22
 
-boolean testClavier(int adresse);
+boolean testClavier();
 int toucheAppuyee(int adresse);
 char tradClavier(int valeur);
 

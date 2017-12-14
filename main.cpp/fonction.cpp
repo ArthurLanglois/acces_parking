@@ -51,7 +51,7 @@ int boucleAval(void){                       //Fonction qui detecte si il y a pre
 
 int validation(void){                       //Fonction qui permet de dire si le code du clavier est correct et si le code la
   int valid = 0;                            //carte est correct
-  if(testClavier(0x22)==true){              //Clavier bon ou pas
+  if(testClavier()==true){              //Clavier bon ou pas
     if(validationClavier()==1){
       valid = 1;
       effacerAfficheur (0x3b);              //Avec messages s'affichant sur l'afficheur LCD
