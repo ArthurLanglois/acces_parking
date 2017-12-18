@@ -3,8 +3,12 @@
 #include "cartepuce.h"
 #include "fonction.h" 
 #include "affiche.h"
+#include "terminal.h"
 #include <string.h>
 #include <Wire.h>
+#include <EEPROM.h>
+
+#define NBVOITURES 42
 
 void ecrireDonnee(int adress,int donnee){   //Fonction qui permet d'envoyer une donnee a l'adresse rentree en parametre
     Wire.beginTransmission(adress);
@@ -68,5 +72,17 @@ int validation(void){                       //Fonction qui permet de dire si le 
     }
   }
   return valid;
+}
+
+void incrementerCompteur(void){
+        EEPROM.write(NBVOITURES, 1+EEPROM.read(NBVOITURES));  //... dans l'EEPROM de l'Adruino...
+        terminalPosition(3,30);
+        Serial3.print(EEPROM.read(NBVOITURES));
+}
+void reinitialiserCompteur(void){
+        EEPROM.write(NBVOITURES, 0);
+        terminalPosition(3,30);
+        Serial3.print(EEPROM.read(NBVOITURES));
+        Serial3.print("   ");
 }
 
